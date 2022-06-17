@@ -9,7 +9,8 @@
     <title>All Users</title>
 </head>
 <body>
-    <h1>{{ninjas.name}} Ninjas</h1>
+    <!-- To ge the name of the dojo, look at the app.route that is bringing me here. In dojos.py, I am showing this show_ninjas.html and sending what I call one_dojo with it. What I put next to the render template is the name that I need to use in my html, which is why one_dojo is used here. Look at the function I am calling in dojo.py to see what one_dojo equals (it is equal to what is being returned). In the function, I am creating an instance of a dojo, which I call one_dojo. I want to get specifically the name from the instance of the dojo since the instance contains all of the data like the columns, so do one_dojo.name. -->
+    <h1>{{one_dojo.name}} Ninjas</h1>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -20,6 +21,8 @@
         </thead>
         <tbody>
             <!-- must iterate over the list that is there when you are connecting the dojos and ninjas -->
+            <!-- We made a dojo and there is list of ninjas that is associated with it, which is why we have ninjas.ninjas_list -->
+            <!-- Look at notes from the top of the file to understand why the one_dojo part is being shown here. In dojo.py get_all_ninjas, an attribute has been added to the instance of the dojo where the dojo_id in the ninjas table matches the primary key id in the dojo table. This attribute is a list of ninjas, which is why we can traverse it with the for loop below to get the first name, last name, and age of each ninja. Since we are sending one_dojo to the template as seen in dojos.py display_dojo_ninjas(), we will use one_dojo here as well, but also add .ninjas_list because the list of ninjas is what we specifically want to target in the instance of the dojo.  -->
             {% for ninja in one_dojo.ninjas_list: %}
                 <tr>
                     <td>{{ninja.first_name}}</td>

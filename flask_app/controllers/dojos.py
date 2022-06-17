@@ -23,4 +23,4 @@ def display_dojo_ninjas(id):
     data = {
         "id" : id
     }
-    return render_template("show_ninjas.html", ninjas = Dojo.get_all_ninjas(data))
+    return render_template("show_ninjas.html", one_dojo = Dojo.get_all_ninjas(data))

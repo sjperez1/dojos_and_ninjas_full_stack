@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Create Ninja</title>
+</head>
+<body>
+    <h1>New Ninja</h1>
+    <form class="row g-3" action="/ninja/new" method="POST">
+        <div class="col-md-6">
+            <label for="name" class="form-label">Dojo:</label>
+            <!-- you have to use the name variable for request.form to see what you are putting in and value is what you are going to get out of the input from the user filling out the form. -->
+            <select id="name" class="form-select" name="dojo_id">
+                {% for dojo in dojos: %}
+                    <!-- by setting the value you are saying give me the dojo id and the name. The user will select the name and we will get back the id. Since it is a drop down menu, this works. -->
+                    <option value="{{dojo.id}}">{{dojo.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="col-md-12">
+            <label for="first_name" class="form-label">First Name:</label>
+            <input type="text" class="form-control" id="first_name" name="first_name">
+        </div>
+        <div class="col-12">
+            <label for="last_name" class="form-label">Last Name:</label>
+            <input type="text" class="form-control" id="last_name" name="last_name">
+        </div>
+        <div class="col-md-6">
+            <label for="age" class="form-label">Age:</label>
+            <input type="number" class="form-control" id="age" name ="age">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+    <a href="/dojos">Home</a>
+</body>
+</html>
