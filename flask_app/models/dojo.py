@@ -1,5 +1,6 @@
 from flask_app import DATABASE
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app.models.ninja import Ninja
 
 class Dojo:
     def __init__(self, data):
@@ -34,17 +35,28 @@ class Dojo:
         # print(result)
 
         one_dojo = cls(result[0])
+        print(one_dojo)
         ninjas_list = []
 
         for row in result:
             one_ninja = {
-                "id" = row["ninja.id"],
-                "first_name" = row['first_name'],
-                "last_name" = row['last_name'],
-                "created_at" = row['ninja.created_at'],
-                "updated_at" = row['ninja.updated_at'],
-                "dojo_id" = row['dojo_id']
+                # do ninjas.column because ninjas is the table that it comes from.
+                'id' : row['ninjas.id'],
+                'first_name' : row['first_name'],
+                'last_name' : row['last_name'],
+                'created_at' : row['ninjas.created_at'],
+                'updated_at' : row['ninjas.updated_at'],
+                'dojo_id' : row['dojo_id']
             }
+            # create instance of a ninja
+            ninja = Ninja(one_ninja)
+            # put ninja instances in a list
+            ninjas_list.append(ninja)
+        # make an instance of dojo with a list of ninjas
+        one_dojo.ninjas_list = ninjas_list
+        print(one_dojo)
+        print(one_dojo.ninjas_list)
+        return one_dojo
 
 """
 How to name functions based on what you doing in the database:

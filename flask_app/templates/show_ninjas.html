@@ -9,7 +9,7 @@
     <title>All Users</title>
 </head>
 <body>
-    <h1>{{name}} Ninjas</h1>
+    <h1>{{ninjas.name}} Ninjas</h1>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -19,7 +19,8 @@
             </tr>
         </thead>
         <tbody>
-            {% for ninja in ninjas %}
+            <!-- must iterate over the list that is there when you are connecting the dojos and ninjas -->
+            {% for ninja in one_dojo.ninjas_list: %}
                 <tr>
                     <td>{{ninja.first_name}}</td>
                     <td>{{ninja.last_name}}</td>
